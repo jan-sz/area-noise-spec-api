@@ -1,0 +1,10 @@
+package {{package}};
+
+import org.springframework.cloud.openfeign.FeignClient;
+import {{configPackage}}.demo.ClientConfiguration;
+
+{{=<% %>=}}
+@FeignClient(name="demo-spec-api.<%classname%>", url="${demo-api-url:http://localhost:8080}", configuration = org.openapitools.configuration.demo.ClientConfiguration.class)
+<%={{ }}=%>
+public interface {{classname}}Client extends {{classname}} {
+}

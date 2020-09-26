@@ -1,0 +1,11 @@
+title: UserPostRequest
+type: object
+properties:
+  username:
+    description: Username.
+    type: string
+  favoriteAnimal:
+    description: User's favorite animal (dog is always a good choice).
+    type: string
+required:
+  - username

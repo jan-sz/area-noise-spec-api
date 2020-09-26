@@ -1,0 +1,59 @@
+package {{package}};
+
+{{#imports}}import {{import}};
+{{/imports}}
+
+import io.swagger.annotations.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import java.util.Objects;
+import javax.validation.constraints.NotNull;
+import javax.validation.Valid;
+
+{{#models}}
+
+{{#model}}{{#description}}
+/**
+ * {{description}}
+ **/{{/description}}
+@ApiModel(description = "{{{description}}}")
+{{>generatedAnnotation}}
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@EqualsAndHashCode
+@ToString
+public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} {
+  {{#vars}}{{#isEnum}}
+  public enum {{datatypeWithEnum}} {
+    {{#allowableValues}}{{#values}} {{.}}, {{/values}}{{/allowableValues}}
+  };
+  {{/isEnum}}{{#items}}{{#isEnum}}
+  public enum {{datatypeWithEnum}} {
+    {{#allowableValues}}{{#values}} {{.}}, {{/values}}{{/allowableValues}}
+  };
+  {{/isEnum}}{{/items}}{{/vars}}
+
+  {{#vars}}
+  /**{{#description}}
+   * {{{description}}}{{/description}}{{#minimum}}
+   * minimum: {{minimum}}{{/minimum}}{{#maximum}}
+   * maximum: {{maximum}}{{/maximum}}
+   **/
+  @ApiModelProperty({{#required}}required = {{required}}, {{/required}}value = "{{{description}}}")
+  @JsonProperty("{{baseName}}"){{#vendorExtensions}}{{#x-json-view}}
+  @JsonView({{.}}){{/x-json-view}}{{/vendorExtensions}}
+  {{#required}}@NotNull{{/required}}
+  @Valid
+  private {{{datatypeWithEnum}}} {{name}};
+  {{/vars}}
+}
+{{/model}}
+{{/models}}

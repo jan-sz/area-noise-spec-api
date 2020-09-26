@@ -1,0 +1,102 @@
+openapi: 3.0.2
+info:
+  title: Area Noise API - Users
+  version: 1.0.0
+tags:
+  - name: user
+    description: User data
+paths:
+  /api/users/:
+    post:
+      description: Add new user.
+      tags:
+        - user
+      operationId: addUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: defs/users/UserPostRequest.yaml
+            example:
+              {
+                "username": "janek",
+                "favoriteAnimal": "dog"
+              }
+      responses:
+        200:
+          description: User added
+          content:
+            application/json:
+              schema:
+                $ref: defs/users/UserPostResponse.yaml
+              example:
+                {
+                  "userId": 1
+                }
+        400:
+          description: User was not added. The body of the request does not contain all the required data.
+  /api/users/{userId}:
+    get:
+      description: Get user.
+      tags:
+        - user
+      operationId: getUser
+      parameters:
+        - name: userId
+          in: path
+          description: User's ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: Returns user's data.
+          content:
+            application/json:
+              schema:
+                $ref: defs/users/User.yaml
+              example:
+                {
+                  "userId": 1,
+                  "username": "johnConstantine666",
+                  "favoriteAnimal": "Hellhound"
+                }
+        404:
+          description: User was not found.
+    put:
+      description: Update user's data.
+      tags:
+        - user
+      operationId: updateUser
+      parameters:
+        - name: userId
+          in: path
+          description: User's ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: The body of the request contains new status.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: defs/users/UserUpdatePutRequest.yaml
+      responses:
+        200:
+          description: User's data status successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: defs/users/User.yaml
+              example:
+                {
+                  "userId": 1,
+                  "username": "johnConstantine666",
+                  "favoriteAnimal": "Hellhound"
+                }
+        404:
+          description: User not found.

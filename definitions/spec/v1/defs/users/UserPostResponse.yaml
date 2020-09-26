@@ -1,0 +1,9 @@
+title: UserPostResponse
+type: object
+properties:
+  userId:
+    description: User's unique identifier.
+    type: integer
+    format: int64
+required:
+  - userId

@@ -1,0 +1,8 @@
+title: UserUpdatePutRequest
+type: object
+properties:
+  favoriteAnimal:
+    description: User's favorite animal (dog is always a good choice).
+    type: string
+required:
+  - favoriteAnimal

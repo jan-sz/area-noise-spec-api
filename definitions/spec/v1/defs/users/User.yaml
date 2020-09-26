@@ -1,0 +1,16 @@
+title: User
+type: object
+properties:
+  userId:
+    description: User's unique identifier.
+    type: integer
+    format: int64
+  username:
+    description: Username.
+    type: string
+  favoriteAnimal:
+    description: User's favorite animal (dog is always a good choice).
+    type: string
+required:
+  - userId
+  - username
