@@ -69,8 +69,8 @@
     <distributionManagement>
         <repository>
             <id>github</id>
-            <name>GitHub OWNER Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/OWNER/REPOSITORY</url>
+            <name>GitHub jan-sz Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/jan-sz/area-noise-spec-api</url>
         </repository>
     </distributionManagement>
 
