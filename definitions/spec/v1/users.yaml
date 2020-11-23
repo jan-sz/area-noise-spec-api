@@ -20,7 +20,7 @@ paths:
               $ref: defs/users/UserPostRequest.yaml
             example:
               {
-                "username": "janek",
+                "username": "testUsername",
                 "favoriteAnimal": "dog"
               }
       responses:
